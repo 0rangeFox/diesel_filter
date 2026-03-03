@@ -6,7 +6,7 @@ Works with `diesel` and `Postgres`.
 ## Crate features
 
 - `rocket` Derives `FromForm` on the generated filter struct ([See this example](#with-rocket))
-- `actix` Derives `Deserialize` on the generated filter struct ([See this example](#with-actix))
+- `actix`/`ntex` Derives `Deserialize` on the generated filter struct ([See this example](#with-actix-or-ntex))
 - `serialize` with `pagination` Adds the `PaginatedPayload` trait that can directly be sent to your client
 
 ## Changes in 2.0
@@ -62,9 +62,9 @@ Project::filter(&filters)
 
 With the `rocket` feature, the generated struct can be obtained from the request query parameters (dot notation `?filters.name=xxx`)
 
-### With Actix
+### With Actix or Ntex
 
-With the `actix` feature, the generated struct can be obtained from the request query parameters
+With the `actix` or `ntex` feature, the generated struct can be obtained from the request query parameters
 
 N.B: unlike the `rocket` integration, the query parameters must be sent unscopped. e.g `?field=xxx&other=1`
 

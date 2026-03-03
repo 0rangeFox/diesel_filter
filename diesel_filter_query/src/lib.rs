@@ -146,7 +146,7 @@ pub fn diesel_filter_derive(input: TokenStream) -> TokenStream {
             #[cfg(feature = "rocket")]
             field_attributes.push(quote! { #[field(default = Option::None)] });
 
-            #[cfg(any(feature = "actix", feature = "axum"))]
+            #[cfg(any(feature = "actix", feature = "axum", feature = "ntex"))]
             {
                 let serde_as_path = format!(
                     "Option<::diesel_filter::serde_with::StringWithSeparator::<::diesel_filter::serde_with::formats::CommaSeparator, {}>>",
@@ -228,7 +228,7 @@ pub fn diesel_filter_derive(input: TokenStream) -> TokenStream {
         }
     };
 
-    #[cfg(any(feature = "actix", feature = "axum"))]
+    #[cfg(any(feature = "actix", feature = "axum", feature = "ntex"))]
     let filters_struct = quote! {
         #[::diesel_filter::serde_with::serde_as(crate = "::diesel_filter::serde_with")]
         #[derive(serde::Deserialize, #( #extra_derive, )*)]
@@ -237,7 +237,7 @@ pub fn diesel_filter_derive(input: TokenStream) -> TokenStream {
         }
     };
 
-    #[cfg(not(any(feature = "rocket", feature = "actix", feature = "axum")))]
+    #[cfg(not(any(feature = "rocket", feature = "actix", feature = "axum", feature = "ntex")))]
     let filters_struct = quote! {
         #[derive(#( #extra_derive, )*)]
         pub struct #filter_struct_ident {

@@ -1,6 +1,6 @@
 [package]
 name = "diesel_filter_query"
-version = "2.0.0"
+version = "2.1.0"
 authors = ["Terry Raimondo <terry.raimondo@gmail.com>"]
 edition = "2024"
 license = "MIT OR Apache-2.0"
@@ -14,6 +14,7 @@ readme = "../README.md"
 rocket = []
 actix = []
 axum = []
+ntex = []
 utoipa = []
 
 [dependencies]
