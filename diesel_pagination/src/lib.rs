@@ -88,7 +88,7 @@ impl<T> PaginatedQuery<T> {
     pub fn load_and_count<'a, U, Conn>(self, conn: &mut Conn) -> QueryResult<Paginated<U>>
     where
         Self: diesel::query_dsl::methods::LoadQuery<'a, Conn, (U, i64)>,
-        Conn: diesel::connection::Connection,
+        Conn: Connection,
     {
         let Self { page, per_page, .. } = self;
         let results = self.load::<(U, i64)>(conn)?;
